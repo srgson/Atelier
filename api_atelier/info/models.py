@@ -9,5 +9,6 @@ class ServicePrice(models.Model):
         verbose_name='Номер позиции', unique=True)
 
     class Meta:
+        ordering = ('-sort_position', )
         verbose_name = 'Услуга'
         verbose_name_plural = 'Услуги'
