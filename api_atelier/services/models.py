@@ -30,7 +30,7 @@ class Telegram_manager(models.Model):
     )
     email = models.EmailField(blank=True)
     telegram_id = models.CharField(
-        max_length=9,
+        max_length=11,
         verbose_name='id Telegram'
     )
     to_telegram = models.BooleanField(

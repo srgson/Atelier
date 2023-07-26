@@ -26,8 +26,9 @@ BOT_TOKEN = os.getenv('BOT_TOKEN')
 CREATE_CLAIM_URL = 'http://127.0.0.1:8000/api/create_claim'
 RECIEVE_MANAGERS_URL = 'http://127.0.0.1:8000/api/managers/'
 
-PHONE_NUMBER_ASK_TXT = 'Пожалуйста, введите номер телефона в формете +79993331122:'
-REQUEST_MESSAGE_TXT = 'Request message text'
+PHONE_NUMBER_ASK_TXT = (
+    'Пожалуйста, введите номер телефона в формете +79993331122:')
+REQUEST_MESSAGE_TXT = ('Новая заявка.\n Номер: +{0}')
 REQUEST_BUTTON_TEXT = 'Оставить заявку'
 START_MESSAGE = 'Добро пожаловать!'
 
@@ -69,9 +70,7 @@ async def recieve_phone_number(
 
 
 async def send_request(
-    phone_number,
-    update: Update,
-    context: ContextTypes.DEFAULT_TYPE
+    phone_number, update: Update, context: ContextTypes.DEFAULT_TYPE
 ):
     """Посылает заявку в тг менеджера и записывает в БД."""
     data = {
@@ -90,7 +89,7 @@ async def send_request(
             if manager['to_telegram']:
                 await context.bot.send_message(
                     chat_id=manager['telegram_id'],
-                    text=REQUEST_MESSAGE_TXT
+                    text=REQUEST_MESSAGE_TXT.format(data['phone_number'])
                 )
 
 
@@ -106,7 +105,9 @@ async def start_message(
 
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
-        text="Добро пожаловать",
+        text=(
+            "Нажмите кнопку оставить заявку и мы "
+            "свяжемся с вами в ближайшее время."),
         reply_markup=reply_markup
     )
 

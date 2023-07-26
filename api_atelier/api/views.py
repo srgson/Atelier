@@ -1,7 +1,10 @@
-from rest_framework import status, viewsets, mixins, generics
+from rest_framework import mixins, status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from api.serializers import ClaimSerializer, Telegram_managerSerializer
+
+from api.serializers import (ClaimSerializer, ServicePriceSerializer,
+                             Telegram_managerSerializer)
+from info.models import ServicePrice
 from services.models import Claim, Telegram_manager
 
 
@@ -26,3 +29,8 @@ def create_claim(request):
 class ManagersListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = Telegram_managerSerializer
     queryset = Telegram_manager.objects.all()
+
+
+class ServicePriceViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = ServicePrice.objects.all()
+    serializer_class = ServicePriceSerializer
