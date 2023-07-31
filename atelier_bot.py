@@ -21,6 +21,7 @@ RECIEVE_MANAGERS_URL = 'http://127.0.0.1:8000/api/managers/'
 RECIEVE_BOT_TOKEN_URL = 'http://127.0.0.1:8000/api/bot/'
 
 PHONE_NUMBER_ASK_TXT = (
+
     'Пожалуйста, введите номер телефона в формете +79993331122:'
 )
 REQUEST_MESSAGE_TXT = 'Новая заявка.\nНомер: {0}'
