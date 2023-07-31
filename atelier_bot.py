@@ -28,7 +28,7 @@ RECIEVE_MANAGERS_URL = 'http://127.0.0.1:8000/api/managers/'
 
 PHONE_NUMBER_ASK_TXT = (
     'Пожалуйста, введите номер телефона в формете +79993331122:')
-REQUEST_MESSAGE_TXT = ('Новая заявка.\n Номер: +{0}')
+REQUEST_MESSAGE_TXT = ('Новая заявка.\nНомер: +{0}')
 REQUEST_BUTTON_TEXT = 'Оставить заявку'
 START_MESSAGE = 'Добро пожаловать!'
 
@@ -76,7 +76,7 @@ async def send_request(
     data = {
         'username': update.effective_user.username,
         'phone_number': phone_number,
-        'message': REQUEST_MESSAGE_TXT
+        'message': REQUEST_MESSAGE_TXT.format(phone_number)
     }
     response = requests.post(
         url=CREATE_CLAIM_URL,
