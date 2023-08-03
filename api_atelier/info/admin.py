@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import ServicePrice, Bot
+from .models import ServicePrice, Bot, Images
 
 
 class ServicePriceAdmin(admin.ModelAdmin):
@@ -13,5 +13,10 @@ class BotAdmin(admin.ModelAdmin):
     list_display = ('username', 'token', 'active')
 
 
+class ImagesAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description', 'image')
+
+
 admin.site.register(ServicePrice, ServicePriceAdmin)
 admin.site.register(Bot, BotAdmin)
+admin.site.register(Images, ImagesAdmin)
